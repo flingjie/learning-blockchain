@@ -1,3 +1,4 @@
 *.pyc
 */venv
 */.ipynb_checkpoints
+第五章/pet-shop/node_modules/*
