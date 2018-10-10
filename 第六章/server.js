@@ -4,7 +4,7 @@ var Fabric_Client = require('fabric-client');
 var path = require('path');
 var util = require('util');
 var os = require('os');
-
+app.use(express.static('static'));
 //
 var fabric_client = new Fabric_Client();
 
@@ -73,7 +73,7 @@ app.get('/',function(req,res){
                 res.send("error from query = ", query_responses[0]);
             } else {
                 console.log("Response is ", query_responses[0].toString());
-                
+
                 var cars = JSON.parse(query_responses[0].toString());
                 var content = ""
                 content += '<!doctype html>'
@@ -166,7 +166,7 @@ app.get("/:carId",function(req, res, next){
                 res.send("error from query = ", query_responses[0]);
             } else {
                 console.log("Response is ", query_responses[0].toString());
-                
+
                 var car = JSON.parse(query_responses[0].toString());
                 var content = ""
                 content += '<!doctype html>'
@@ -179,7 +179,8 @@ app.get("/:carId",function(req, res, next){
                 content += '<body>'
                 content += '<div class="text-center"><h1>' + req.params.carId + '详情</h1><div><a href="/">返回</a></div></div>'
                 content += '<div class="container">'
-                content += '<div class="card" style="width: 18rem;">'
+                content += '<div class="card" style="width: 18rem;margin:auto">'
+                content += '<img class="card-img-top" src="./images/' + req.params.carId + '.jpeg" alt="' + req.params.carId + '">'
                 content += '<div class="card-body">'
                 content += '<h5 class="card-title">' + req.params.carId + '</h5>'
                 content += '<p class="card-text">颜色：' + car.colour + '</p>'
