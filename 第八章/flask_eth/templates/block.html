@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}区块信息{% endblock %}
+{% block css %}
+    <!--加载jquery.json-browse样式-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.json-browse.css') }}">
+{% endblock %}
+{% block content %}
+    <div>
+        <h3>最新区块信息</h3>
+        <hr>
+        <div id="block">
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <!--加载jquery.json-browse库js文件-->
+    <script src="{{ url_for('static', filename='js/jquery.json-browse.js') }}" crossorigin="anonymous"></script>
+    <script>
+        // 加载区块数据
+        var input = {{ block|safe }}
+        $('#block').jsonBrowse(input);
+    </script>
+{% endblock %}
