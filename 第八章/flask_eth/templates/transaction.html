@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}交易信息{% endblock %}
+{% block css %}
+    <!--加载jquery.json-browse样式-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.json-browse.css') }}">
+{% endblock %}
+{% block content %}
+    <div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" id="hash" placeholder="交易哈希值">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" id="search">搜索交易</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="transaction">
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <!--加载jquery.json-browse库js文件-->
+    <script src="{{ url_for('static', filename='js/jquery.json-browse.js') }}" crossorigin="anonymous"></script>
+    <script>
+        // 加载区块数据
+        $("#search").click(function(){
+            var hash = $("#hash").val();
+            if(!hash) {
+                alert("请输入交易哈希值");
+            }
+            $.post("/transaction",{
+              transaction: hash
+            },
+            function (data) {
+              $('#transaction').jsonBrowse(data);
+            });
+
+        })
+    </script>
+{% endblock %}

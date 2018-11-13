@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}区块分析{% endblock %}
+{% block content %}
+    <div id="visualization" style="width:700px;height:500px"></div>
+{% endblock %}
+{% block script %}
+    <!--加载jquery.json-browse库js文件-->
+    <script src="{{ url_for('static', filename='js/echarts.common.min.js') }}" crossorigin="anonymous"></script>
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('visualization'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '区块分析'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['区块难度']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: {{ x_data|safe }}
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'区块难度',
+                    type:'line',
+                    stack: '难度',
+                    data: {{ difficulty_data|safe }}
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+{% endblock %}
