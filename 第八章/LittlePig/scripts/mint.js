@@ -1,20 +1,15 @@
 const HDWalletProvider = require("truffle-hdwallet-provider")
 const web3 = require('web3')
-const MNEMONIC = process.env.MNEMONIC
-const INFURA_KEY = process.env.INFURA_KEY
-const FACTORY_CONTRACT_ADDRESS = process.env.FACTORY_CONTRACT_ADDRESS
-const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
-const OWNER_ADDRESS = process.env.OWNER_ADDRESS
-const NETWORK = process.env.NETWORK
+const MNEMONIC = "hello well money ...."
+const INFURA_KEY = "NFURA_KEY"
+const FACTORY_CONTRACT_ADDRESS = "0xXXXX"
+const NFT_CONTRACT_ADDRESS = "0xXXXX"
+const OWNER_ADDRESS = "0xXXXXX"
+const NETWORK = "ropsten"
 const NUM_CREATURES = 12
 const NUM_LOOTBOXES = 4
 const DEFAULT_OPTION_ID = 0
 const LOOTBOX_OPTION_ID = 2
-
-if (!MNEMONIC || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
-    console.error("Please set a mnemonic, infura key, owner, network, and contract address.")
-    return
-}
 
 const NFT_ABI = [{
     "constant": false,
